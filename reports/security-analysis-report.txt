@@ -1,0 +1,80 @@
+==========================================
+ Linux Authentication Security Analysis
+==========================================
+
+Analysis Time: Sun Aug 16 01:47:16 AM EDT 2026
+Hostname: kali
+
+=== FAILED AUTHENTICATION EVENTS ===
+Aug 16 01:31:11 kali unix_chkpwd[42373]: password check failed for user (kali)
+Aug 16 01:31:11 kali sudo[42347]: pam_unix(sudo:auth): authentication failure; logname=kali uid=1000 euid=0 tty=/dev/pts/0 ruser=kali rhost=  user=kali
+Aug 16 01:31:16 kali unix_chkpwd[42423]: password check failed for user (kali)
+
+=== FAILED AUTHENTICATION COUNT ===
+3
+
+=== PRIVILEGED COMMAND EXECUTION ===
+Aug 15 22:25:32 kali sudo[5441]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sn 10.10.10.0/24
+Aug 15 22:27:55 kali sudo[6705]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sS 10.10.10.20
+Aug 15 22:33:40 kali sudo[9437]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sS 10.10.10.20
+Aug 15 22:35:09 kali sudo[10207]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sV 10.10.10.20
+Aug 15 22:36:57 kali sudo[11109]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sV 10.10.10.5
+Aug 15 22:39:21 kali sudo[12372]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -0 10.10.10.5
+Aug 15 22:39:35 kali sudo[12508]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -O 10.10.10.5
+Aug 15 22:41:43 kali sudo[13567]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sC -p 53,88,135,139,389,445,464,593,636,3268,3269,5985 10.10.10.5
+Aug 15 22:48:24 kali sudo[16741]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -p 445 --script smb-protocols,smb2-security-mode,smb2-time 10.10.10.5
+Aug 15 23:05:31 kali sudo[24718]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/apt update
+Aug 15 23:06:28 kali sudo[25215]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/apt install -y docker.io
+Aug 15 23:07:50 kali sudo[26586]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/systemctl enable --now docker
+Aug 15 23:08:26 kali sudo[26954]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/systemctl enable --now docker
+Aug 15 23:08:33 kali sudo[27090]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker run hello-world
+Aug 15 23:09:19 kali sudo[27600]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker pull bkimminich/juice-shop
+Aug 15 23:10:09 kali sudo[28051]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker run -d --name juice-shop -p 3000:3000 bkimminich/juice-shop
+Aug 15 23:10:24 kali sudo[28267]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker ps
+Aug 15 23:11:49 kali sudo[29387]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/apt install -y zaproxy
+Aug 16 00:32:52 kali sudo[3538]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/systemctl start docker
+Aug 16 00:32:59 kali sudo[3627]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker start juice-shop
+Aug 16 00:33:06 kali sudo[3791]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker ps
+Aug 16 01:31:22 kali sudo[42347]:     kali : TTY=pts/0 ; PWD=/home/kali/web-app-security-assessment/reports ; USER=root ; COMMAND=/usr/bin/journalctl --disk-usage
+Aug 16 01:31:35 kali sudo[42577]:     kali : TTY=pts/0 ; PWD=/home/kali/web-app-security-assessment/reports ; USER=root ; COMMAND=/usr/bin/journalctl -n 10 --no-pager
+Aug 16 01:32:23 kali sudo[42977]:     kali : TTY=pts/0 ; PWD=/home/kali/web-app-security-assessment/reports ; USER=root ; COMMAND=/usr/bin/journalctl --since '24 hours ago' --no-pager
+Aug 16 01:32:32 kali sudo[43048]:     kali : TTY=pts/0 ; PWD=/home/kali/web-app-security-assessment/reports ; USER=root ; COMMAND=/usr/bin/journalctl --since '24 hours ago' --no-pager
+Aug 16 01:32:42 kali sudo[43135]:     kali : TTY=pts/0 ; PWD=/home/kali/web-app-security-assessment/reports ; USER=root ; COMMAND=/usr/bin/journalctl --since '24 hours ago' --no-pager
+Aug 16 01:34:46 kali sudo[44176]:     kali : TTY=pts/0 ; PWD=/home/kali/linux-log-security-analysis ; USER=root ; COMMAND=./scripts/analyze_auth_logs.sh
+Aug 16 01:36:20 kali sudo[45053]:     kali : TTY=pts/0 ; PWD=/home/kali/linux-log-security-analysis ; USER=root ; COMMAND=./scripts/analyze_auth_logs.sh
+Aug 16 01:40:11 kali sudo[47068]:     kali : TTY=pts/0 ; PWD=/home/kali/linux-log-security-analysis ; USER=root ; COMMAND=./scripts/analyze_auth_logs.sh
+Aug 16 01:44:15 kali sudo[49147]:     kali : TTY=pts/0 ; PWD=/home/kali/linux-log-security-analysis ; USER=root ; COMMAND=./scripts/analyze_auth_logs.sh
+Aug 16 01:47:16 kali sudo[50653]:     kali : TTY=pts/0 ; PWD=/home/kali/linux-log-security-analysis ; USER=root ; COMMAND=./scripts/analyze_auth_logs.sh
+
+=== PRIVILEGED COMMAND COUNT ===
+31
+
+
+=== HIGH-INTEREST PRIVILEGED COMMANDS ===
+Aug 15 22:25:32 kali sudo[5441]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sn 10.10.10.0/24
+Aug 15 22:27:55 kali sudo[6705]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sS 10.10.10.20
+Aug 15 22:33:40 kali sudo[9437]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sS 10.10.10.20
+Aug 15 22:35:09 kali sudo[10207]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sV 10.10.10.20
+Aug 15 22:36:57 kali sudo[11109]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sV 10.10.10.5
+Aug 15 22:39:21 kali sudo[12372]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -0 10.10.10.5
+Aug 15 22:39:35 kali sudo[12508]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -O 10.10.10.5
+Aug 15 22:41:43 kali sudo[13567]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -sC -p 53,88,135,139,389,445,464,593,636,3268,3269,5985 10.10.10.5
+Aug 15 22:48:24 kali sudo[16741]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/nmap -p 445 --script smb-protocols,smb2-security-mode,smb2-time 10.10.10.5
+Aug 15 23:06:28 kali sudo[25215]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/apt install -y docker.io
+Aug 15 23:07:50 kali sudo[26586]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/systemctl enable --now docker
+Aug 15 23:08:26 kali sudo[26954]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/systemctl enable --now docker
+Aug 15 23:08:33 kali sudo[27090]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker run hello-world
+Aug 15 23:09:19 kali sudo[27600]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker pull bkimminich/juice-shop
+Aug 15 23:10:09 kali sudo[28051]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker run -d --name juice-shop -p 3000:3000 bkimminich/juice-shop
+Aug 15 23:10:24 kali sudo[28267]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker ps
+Aug 15 23:11:49 kali sudo[29387]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/apt install -y zaproxy
+Aug 16 00:32:52 kali sudo[3538]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/systemctl start docker
+Aug 16 00:32:59 kali sudo[3627]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker start juice-shop
+Aug 16 00:33:06 kali sudo[3791]:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/docker ps
+
+High-interest privileged commands: 20
+=== SECURITY SUMMARY ===
+Failed authentication events: 3
+Privileged command events: 31
+High-interest privileged commands: 20
+ALERT: Multiple authentication failures detected.
