@@ -118,6 +118,14 @@ For example, Nmap scans, Docker administration, service modifications, and packa
 
 The script therefore functions as an initial detection and triage mechanism that surfaces activity for analyst review.
 
+## What I Learned
+
+- **Detection is a filtering problem, not a verdict.** Commands such as Nmap, Docker, `systemctl`, and package-management activity can be security-relevant without being malicious. The surrounding user, timing, system, and event context determine whether they deserve escalation.
+- **Thresholds make raw telemetry operationally useful.** Counting authentication failures and comparing them against a defined threshold turns a stream of journal events into a repeatable detection decision.
+- **Linux journal data can support lightweight security monitoring without a full SIEM.** `journalctl`, Bash filtering, event counting, and persistent reporting were enough to create a basic detection-and-triage workflow.
+- **Automation improves consistency but does not replace analyst judgment.** The script can surface high-interest activity reliably, but a human still has to determine why the activity occurred and whether it represents legitimate administration or suspicious behavior.
+- **A useful detection should produce evidence that can be reviewed later.** Generating a persistent report made the workflow more repeatable and auditable than relying on transient terminal output alone.
+
 ## Future Improvements
 
 Potential extensions include:
